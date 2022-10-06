@@ -2,7 +2,7 @@
   "name": "mapa-mundi-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://leonsp95.github.io",
+  "homepage": "https://leonsp95.github.io/mapa-mundi-react",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
