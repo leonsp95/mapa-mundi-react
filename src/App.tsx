@@ -1,43 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Table from './components/Table';
-import TableBody from './components/TableBody';
-import TableFooter from './components/TableFooter';
-import TableHead from './components/TableHead';
-import { MovieInfo } from './data/@types/MovieInfo';
-
+import { MainContainer } from './components';
+import WorldMap from './components/WorldMap/WorldMap';
+import { Country } from './data/@types/Country';
+import api from './services/axios-api';
+import getflag from './services/get-flag';
 
 function App() {
-  let [myList, setMyList] = useState<MovieInfo[]> (
-    [
-      {
-        id: 1,
-        title: "O Telefone Preto",
-        orgTitle: "The Black Phone",
-        year: 2021,
-        director: "Scott Derrickson",
-        review: 3.5
-      },
-      {
-        id: 2,
-        title: "Invocação do Mal",
-        orgTitle: "The Conjuring",
-        year: 2013,
-        director: "James Wan",
-        review: 3.8
-      },
-    ]
-)
-console.log(typeof(myList));
+  let [MainCont, setMainCont] = useState<boolean>(false);
+  let [countryData, setData] = useState<Country>();
+  let [countryFlag, setFlag] = useState<string>();
 
+  const handleSubmit: CallableFunction = (countryCode: string) => {
+    api
+      .get(`${countryCode}`)
+      .then((response) => {
+        response.data !== '' ? setData(response.data) : console.log('Erro');
+        console.log(response.data);
+      })
+      .then(() => {
+        const flagLink: string = getflag(countryCode);
+        setFlag(flagLink);
+      })
+      .then(() => {
+        setMainCont((current) => (current = true));
+      })
+      .catch((err) => {
+        console.error('Lista não encontrada! Erro: ' + err);
+      });
+  };
 
   return (
-    <div className="App">
-      <Table>
-        <TableHead/>
-        <TableBody {...myList} />
-        <TableFooter/>
-      </Table>
+    <div className='App'>
+      <WorldMap handleSubmit={handleSubmit} />
+      <div className='MainContCont'>
+        {MainCont && countryFlag && countryData && (
+          <MainContainer
+            countryData={countryData[0]}
+            countryFlag={countryFlag}
+            mainContEnabled={setMainCont}
+          />
+        )}
+      </div>
     </div>
   );
 }

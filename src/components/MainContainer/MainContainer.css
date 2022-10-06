@@ -1,0 +1,86 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(107, 107, 107);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(201, 201, 201);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(153, 153, 153);
+}
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+
+.closeBtn {
+  position: relative;
+  width:28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgb(87, 87, 87);
+  align-self: flex-end;
+}
+
+.line {
+  position: absolute;
+  color: white;
+  width: 20px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.closeBtn:hover {
+  cursor:pointer;
+}
+
+.card-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color:rgba(49, 49, 49, .85);
+  border: 3px solid rgb(63, 63, 63);
+  border-radius: 25px  0;
+  padding: 1.75rem 1rem;
+}
+
+
+.container-historico {
+  width: 90%;
+  padding: 10px;
+  max-height: 350px;
+  overflow-y: auto;
+  border: 1px solid rgb(87, 87, 87);
+  text-align:justify;
+
+}
+
+
+.country-card {
+  height: 100%;
+  width: 90%;
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .75rem;
+}
